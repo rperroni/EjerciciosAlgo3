@@ -692,7 +692,7 @@ test06CannotTransferAZeroAmount
 
 !classDefinition: #Account category: 'ServiciosFinancieros-Reportes'!
 Object subclass: #Account
-	instanceVariableNames: 'name'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'ServiciosFinancieros-Reportes'!
@@ -730,32 +730,11 @@ addTransactionsTo: aCollectionOfTransactions
 	self subclassResponsibility ! !
 
 
-!Account methodsFor: 'initialization' stamp: 'RP 12/5/2021 10:20:22'!
-withName: aName
 
-	name := aName .! !
-
-
-
-!Account methodsFor: 'accesing' stamp: 'RP 12/5/2021 11:08:45'!
-name
-
-	^name.! !
 
 
 !Account methodsFor: 'nil' stamp: 'RP 12/6/2021 15:04:13'!
 generateFor: aReport
-
-	self subclassResponsibility .! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Account class' category: 'ServiciosFinancieros-Reportes'!
-Account class
-	instanceVariableNames: ''!
-
-!Account class methodsFor: 'as yet unclassified' stamp: 'RP 12/5/2021 10:24:46'!
-named: aName
 
 	self subclassResponsibility .! !
 
@@ -870,11 +849,6 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'visitor' stamp: 'RP 12/5/2021 16:53:50'!
-accounts
-
-	^accounts copy.! !
-
 !Portfolio methodsFor: 'visitor' stamp: 'RP 12/6/2021 16:52:49'!
 generateFor: aReport
 
@@ -916,26 +890,6 @@ cannotBeAddedToAPortfolioIfTheyShareAnAccountErrorDescription
 cannotContainItselfErrorDescription
 	^'A portfolio cannot contain itself!!'.
 	! !
-
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'RP 12/5/2021 10:23:55'!
-named: aName
-
-	^self new withName: aName! !
-
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'RP 12/5/2021 10:46:32'!
-named: aName with: anAccount
-
-	^( self named: aName )
-		add: anAccount;
-		yourself! !
-
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'RP 12/5/2021 10:46:27'!
-named: aName with: anAccount with: anotherAccount
-
-	^( self named: aName )
-		add: anAccount;
-		add: anotherAccount;
-		yourself! !
 
 !Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
@@ -1014,17 +968,6 @@ generateFor: aReport
 	
 	transactions ifEmpty: [ ^self ].
 	transactions do: [ :aTransaction | aTransaction generateFor: aReport ].! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'ReceptiveAccount class' category: 'ServiciosFinancieros-Reportes'!
-ReceptiveAccount class
-	instanceVariableNames: ''!
-
-!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'RP 12/5/2021 10:19:03'!
-named: aName
-
-	^self new withName: aName.! !
 
 
 !classDefinition: #AccountTransaction category: 'ServiciosFinancieros-Reportes'!
